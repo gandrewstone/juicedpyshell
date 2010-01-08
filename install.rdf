@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+     xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+	<Description about="urn:mozilla:install-manifest">
+	
+		<em:id>pyshell@twhiteman.netfirms.com</em:id>
+		<em:name>juiced pyshell</em:name>
+		<em:version>0.7</em:version>
+		<em:description>Juiced Python interactive shell</em:description>
+		<em:creator>Todd Whiteman, Andrew Stone</em:creator>
+		<em:homepageURL>http://pyxpcomext.mozdev.org/</em:homepageURL>
+
+                <!-- Requires the PyXPCOM extension -->
+                <em:requires>
+                    <Description>
+                        <em:id>pythonext@mozdev.org</em:id>
+                        <em:minVersion>2.5</em:minVersion>
+                        <em:maxVersion>2.*</em:maxVersion>
+                    </Description>
+                </em:requires>
+
+		<em:targetApplication>
+			<Description>
+				<!-- Firefox uuid -->
+				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+				<em:minVersion>1.5</em:minVersion>
+				<em:maxVersion>3.6.*</em:maxVersion>
+			</Description>
+		</em:targetApplication>
+                <em:targetApplication>
+                        <Description>
+                                <!-- Thunderbird -->
+                                <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id>
+                                <em:minVersion>1.5</em:minVersion>
+                                <em:maxVersion>3.*</em:maxVersion>
+                        </Description>
+                </em:targetApplication>
+                <em:targetApplication>
+                        <Description>
+                                <em:id>xulexplorer@developer.mozilla.org</em:id>
+				<em:minVersion>0.4</em:minVersion>
+				<em:maxVersion>1.*</em:maxVersion>
+                        </Description>
+                </em:targetApplication>
+                <em:targetApplication>
+                        <Description>
+                                <em:id>songbird@songbirdnest.com</em:id>
+                                <em:minVersion>0.4pre</em:minVersion>
+                                <em:maxVersion>1.*</em:maxVersion>
+                        </Description>
+                </em:targetApplication>
+
+	</Description>
+
+</RDF>
