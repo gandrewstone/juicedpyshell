@@ -331,7 +331,7 @@ def mouse(doc,ident,event="click"):
 
 def refresh():
   """?? Grab the object describing in the active window, the active tab, and the active document
-  <return>A tuple (win,tab,doc)
+  <return>A tuple (win,tab,doc)</return>
   """
   win = fuelApp.activeWindow
   tab = fuelApp.activeWindow.activeTab 

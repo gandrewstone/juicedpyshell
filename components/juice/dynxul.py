@@ -140,8 +140,8 @@ def hprt(s):
 # dynxul.addMenu(("menu",{"label":"m2"},[("menupopup",None,[("menuitem", {"label":"test1","id":"test1"},None)])]))
 def addMenu(menuspec,xul=None):
     """?? Creates a new menu.  Your menu will be appended to the XUL node named "themenubar"
-    <arg name='menuspec'>The specification of the menu in <ref>domhelper.bld</ref> format i.e. (tag,{attr:values},[children])
-    <arg name='xul'>The XUL document to add the menu to.
+    <arg name='menuspec'>The specification of the menu in <ref>domhelper.bld</ref> format i.e. (tag,{attr:values},[children])</arg>
+    <arg name='xul'>The XUL document to add the menu to.</arg>
     """
     if not xul: xul=theXulDoc
     mb = xul.getElementById("themenubar")
@@ -150,7 +150,7 @@ def addMenu(menuspec,xul=None):
 def addSidebarTab(label,contents=None):
     """?? Creates a new tab in the sidebar.
     <arg name='label'>The name of the tab (and also the ID of the XUL DOM node)</arg>
-    <arg name='contents'>A list of the menu contents in <ref>domhelper.bld</ref> format i.e. (tag,{attr:values},[children])
+    <arg name='contents'>A list of the menu contents in <ref>domhelper.bld</ref> format i.e. (tag,{attr:values},[children])</arg>
     """
     sp = theXulDoc.getElementById("sidepanel")
     sp.childNodes.item(0).appendChild(dh.bld(("tab",{"label":label, "id":label},None),theXulDoc))
@@ -264,7 +264,7 @@ def threadPaneRemove(name,delHandle=True):
 def threadPaneStatus(threadName,status):
     """?? Changes a thread's status display.  Can be called from any context.
     <arg name='threadName'>The thread's name</arg>
-    <arg name='status'>The string you want displayed</status>
+    <arg name='status'>The string you want displayed</arg>
     """
     if threadName is None:
         threadName = threadhelper.ThreadName()

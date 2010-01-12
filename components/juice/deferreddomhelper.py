@@ -63,7 +63,7 @@ NODS = True
 
 def d_refresh():
   """?? Grab the object describing in the active window, the active tab, and the active document
-  <return>A tuple (win,tab,doc)
+  <return>A tuple (win,tab,doc)</return>
   """  
   return browserContext.call(dh.refresh)
 
