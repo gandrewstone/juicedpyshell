@@ -48,6 +48,8 @@ import xpcom
 from types import *
 from handle import *
 
+log = None
+
 class DocLoadException(Exception):
     """?? This exception is raised when the document is unable to be loaded in all threads that are waiting for the load to finish
     """

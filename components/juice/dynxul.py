@@ -62,7 +62,7 @@ class FakeLock:
     def release(self):
         pass
 
-docLock = None
+docLock = FakeLock()
 
 #? <section name='private'>
 
@@ -121,7 +121,7 @@ def getPyShellXul():
 
 def hprt(s):
   """?? Print HTML"""
-  docLock.acquire()
+  #docLock.acquire()
   try:
     if type(s) in StringTypes:
       n = theCtntDoc.createElement("div")
@@ -131,9 +131,14 @@ def hprt(s):
       
     theShellOutput.appendChild(n)
   finally:
-    docLock.release()
+    #docLock.release()
     pass
 
+def log(s,severity="info"):
+  hprt("<div class='log %s'>%s</div>" % (severity,s))
+
+if not dh.log:
+  dh.log = log
 
 
 # dynxul.addMenu(("menu",{"label":"m1"},[("menupopup",None,[("menuitem", {"label":"test","onclick":"alert('hi');"},None)])]))
@@ -224,14 +229,14 @@ def pauseCheckedThreads(this):
     """
     ct = getCheckedThreads()
     for t in ct:
-      threadhelper.ThreadPause(t,not threadhelper.threadDb[t].pause)
+      threadhelper.threadPause(t,not threadhelper.threadDb[t].pause)
   
 def killCheckedThreads(this):
     """This function is called when you click the Kill button in the GUI
     """
     ct = getCheckedThreads()
     for t in ct:
-      threadhelper.ThreadAbort(t)
+      threadhelper.threadAbort(t)
 
 def threadPaneInit(doc=None):
   if not doc: doc = theXulDoc
@@ -267,6 +272,6 @@ def threadPaneStatus(threadName,status):
     <arg name='status'>The string you want displayed</arg>
     """
     if threadName is None:
-        threadName = threadhelper.ThreadName()
+        threadName = threadhelper.threadName()
     pane = ddh.getElementById(theXulDoc,"threadStatus_" + threadName)
     ddh.browserContext.call(lambda x,y:x.setAttribute("value",str(y)),pane,status)
