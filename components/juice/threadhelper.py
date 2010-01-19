@@ -1,4 +1,6 @@
-"""?? This module contains some useful thread routines and connections to the thread pane in the pyShell's left-hand thread tab
+"""?? Thread and Thread Pane Routines
+
+This module contains some useful thread routines and connections to the thread pane in the pyShell's left-hand thread tab
 
 <license>
 Version: MPL 1.1/GPL 2.0/LGPL 2.1
@@ -13,7 +15,7 @@ basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
 License for the specific language governing rights and limitations
 under the License.
 
-The Original Code is PyShell code.
+The Original Code is JuicedPyShell code.
 
 The Initial Developer of the Original Code is Andrew Stone
 Portions created by the Initial Developer are Copyright (C) 2010.
@@ -150,7 +152,11 @@ class Defer:
 
 
 def threadStart(name,fn,*args):
-  """?? Start a new thread"""
+  """?? Start a new thread
+  <arg name='name'>A string identifier of the thread to start</arg>
+  <arg name='fn'>What function to run</arg>
+  <arg name='args'>A variable # of subsequent arguments that shall become arguments to the passed function</arg>
+  """
   global threadDb
   dynxul.threadPaneAdd(name,None) 
   thr = thread.start_new_thread(threadWrapper, (name, fn) + args)
@@ -182,13 +188,18 @@ def threadName():
   
 
 def threadAbort(nameOrId):
-  """?? Abort a thread.  This routine merely sets a global variable indicating that the thread should be aborted.  Certain functions (namely any deferred call) will check this flag and raise the ThreadAborted exception if it is True"""
+  """?? Abort a thread.  This routine merely sets a global variable indicating that the thread should be aborted.  Certain functions (namely any deferred call) will check this flag and raise the ThreadAborted exception if it is True.
+  <arg name='nameOrId'>A string name or numerical identifier that indicates which thread to operate on.</arg> 
+  """
   global threadDb
   if threadDb.has_key(nameOrId):
     threadDb[nameOrId].abort = True
 
 def threadPause(nameOrId,state=True):
-  """?? Abort a thread.  This routine merely sets a global variable indicating that the thread should be paused.  Certain functions (namely any deferred call) will check this flag and go into a wait loop if it is True"""  
+  """?? Pause a thread.  This routine merely sets a global variable indicating that the thread should be paused.  Certain functions (namely any deferred call) will check this flag and go into a wait loop if it is True
+  <arg name='nameOrId'>A string name or numerical identifier that indicates which thread to operate on.</arg> 
+  <arg name='state'>By default True meaning pause the thread, or pass False which means to resume it</arg>
+  """  
   global threadDb
   if threadDb.has_key(nameOrId):
     threadDb[nameOrId].pause = state

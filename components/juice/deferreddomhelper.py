@@ -1,12 +1,12 @@
 """?? Helper routines to manipulate the DOM (Document Object Model).
-
-This file contains helper functions used to manipulate the DOM.
-These function may be called within any context.  If not in the browser's thread, the call will be pushed onto a work queue and this thread will be blocked.
+<html>
+This file contains helper functions used to manipulate the DOM.  These function may be called within any context.  If not in the browser's thread, the call will be pushed onto a work queue and this thread will be blocked.
+<br/>
 Periodically the browser thread will execute items on the work queue, and unblock the thread when complete.  All of these functions begin with d_, however if the NODS variable is set to true (and it is by default) in this file, then every d_ function will have an equivalent without that prefix.  The purpose of this is to avoid conflicts with the functions defined in domhelper.
-
+<br/>
 Note that any function can be deferred into the browser thread using the "browserContext" object.  So a lot of these routines are simply for convenience and code beautification.  For example:
 
-<code>
+<pre>
 import deferreddomhelper as ddh
 (app,tab,doc) = ddh.refresh() 
 
@@ -14,10 +14,10 @@ import deferreddomhelper as ddh
 aNode       = ddh.browserContext.call(lambda d: d.getElementById("anIdentifier",doc)
 theSameNode = ddh.getElementById("anIdentifier")
 
-</code>
+</pre>
+</html>
 
-<license>
-Version: MPL 1.1/GPL 2.0/LGPL 2.1
+<license name='MPL 1.1, GPL 2.0, or LGPL 2.1'>
 
 The contents of this file are subject to the Mozilla Public License
 Version 1.1 (the "License"); you may not use this file except in

@@ -1,4 +1,4 @@
-"""?? This module implements functions to dynamically change the pyShell XUL user interface definition.
+"""?? Dynamically change the pyShell XUL user interface definition.
 Unless otherwise stated these functions must be run in the browser thread.
 
 <license>
@@ -120,7 +120,9 @@ def getPyShellXul():
 #? </section>
 
 def hprt(s):
-  """?? Print HTML"""
+  """?? Print HTML.  This function print to the PyShell content window as if you were writing html.  So all HTML tags will be interpreted correctly.  If you want to print a string out, you'll have to use the 'pre' tag!
+  <arg name='s' type='string'>The html to print</arg>
+  """
   #docLock.acquire()
   try:
     if type(s) in StringTypes:
@@ -135,8 +137,13 @@ def hprt(s):
     pass
 
 def log(s,severity="info"):
+  """?? Print a log.  This function prints to the PyShell content window with special log formatting
+  <arg name='s' type='string'>The log to print</arg>  
+  <arg name='severity' type='string'> The log severity, can be critical, error, warning, info, debug, trace</arg>
+  """
   hprt("<div class='log %s'>%s</div>" % (severity,s))
 
+# Hook up the log function in domhelper so it can log...
 if not dh.log:
   dh.log = log
 
@@ -145,8 +152,8 @@ if not dh.log:
 # dynxul.addMenu(("menu",{"label":"m2"},[("menupopup",None,[("menuitem", {"label":"test1","id":"test1"},None)])]))
 def addMenu(menuspec,xul=None):
     """?? Creates a new menu.  Your menu will be appended to the XUL node named "themenubar"
-    <arg name='menuspec'>The specification of the menu in <ref>domhelper.bld</ref> format i.e. (tag,{attr:values},[children])</arg>
-    <arg name='xul'>The XUL document to add the menu to.</arg>
+    <arg name='menuspec' type='nested tuple'>The specification of the menu in <ref>domhelper.bld</ref> format i.e. (tag,{attr:values},[children])</arg>
+    <arg name='xul'>The XUL document to add the menu to. If the default 'None' is passed then PyShell's Xul doc will be used.</arg>
     """
     if not xul: xul=theXulDoc
     mb = xul.getElementById("themenubar")
@@ -154,8 +161,8 @@ def addMenu(menuspec,xul=None):
 
 def addSidebarTab(label,contents=None):
     """?? Creates a new tab in the sidebar.
-    <arg name='label'>The name of the tab (and also the ID of the XUL DOM node)</arg>
-    <arg name='contents'>A list of the menu contents in <ref>domhelper.bld</ref> format i.e. (tag,{attr:values},[children])</arg>
+    <arg name='label' type='string'>The name of the tab (and also the ID of the XUL DOM node)</arg>
+    <arg name='contents' type='nested tuple'>A list of the menu contents in <ref>domhelper.bld</ref> format i.e. (tag,{attr:values},[children])</arg>
     """
     sp = theXulDoc.getElementById("sidepanel")
     sp.childNodes.item(0).appendChild(dh.bld(("tab",{"label":label, "id":label},None),theXulDoc))
@@ -169,7 +176,7 @@ def hookStrto(pythonStr,node,event="onclick"):
     This function creates sets the event attribute (by default "onclick") of a DOM node to execute the passed Python string.
     It is implemented by setting the event attribute to a chunk of Javascript code that calls into pyShell with the string.
 
-    <arg name="pythonStr">A python of python code that will be executed</arg>
+    <arg name="pythonStr">A chunk of python code that will be executed</arg>
     <arg name="node">The DOM node to hook this function into</arg>
     <arg name="event">What DOM event do you want to call this function for? Default: onclick</arg>
     """
@@ -193,12 +200,12 @@ def hookto(fn, args, node,event="onclick"):
     calls into pyShell with the handle.  Inside the pyShell thread, the handle is accessed and so the function you passed is called.
     This means that your function will be called within the browser's context, so "deferred" calls are not necessary.
 
-    <arg name="fn">A python function (or lambda) event handler</arg>
-    <arg name="args">A tuple containing the arguments to your function</arg>
-    <arg name="node">The DOM node to hook this function into</arg>
-    <arg name="event">What DOM event do you want to call this function for? Default: onclick</arg>
+    <arg name="fn" type="FunctionType">A python function (or lambda) event handler</arg>
+    <arg name="args" type="TupleType">A tuple containing the arguments to your function</arg>
+    <arg name="node" type="nsIDOMNode">The DOM node to hook this function into</arg>
+    <arg name="event" type="StringType">What DOM event do you want to call this function for? Default: onclick</arg>
 
-    <return>The registered handle.  You need to delete this handle when it no longer becomes useful.</return>
+    <return type="StringType">The registered handle.  You need to delete this handle when it no longer becomes useful.</return>
     
     """
   
@@ -244,17 +251,15 @@ def threadPaneInit(doc=None):
   if panel:
     dh.removeChildren(panel)
     panel.appendChild(dh.bld(("vbox",{"flex":1},[("vbox",{"flex":1,"id":"threadlist"},None),("hbox",{"flex":1},[("button", {"label":"un/pause","onclick":pauseCheckedThreads},None),("button",{"label":"kill","onclick":killCheckedThreads},None)])]),theXulDoc))      
-#? </section>    
-
 
 def threadPaneAdd(name,obj):
-    """?? Adds a information (a thread) to the thread pane.  Should be called when a thread is created.
+    """?? Adds a information (a thread) to the thread pane.  Is called when a thread is created.
     """
     pane = theXulDoc.getElementById("threadlist")
     pane.appendChild(dh.bld(("hbox",{"flex":1,"id":"thread_" + name,"threadname":name,"ref":handleCreate(obj)},[("checkbox",{"label":name},None),("label",{"value":"running","id":"threadStatus_"+name},None)]),theXulDoc))
 
 def threadPaneRemove(name,delHandle=True):
-    """?? Removes information (i.e. a thread) from the thread pane.  Should be called when a thread is deleted.
+    """?? Removes information (i.e. a thread) from the thread pane.  Is called when a thread is deleted.
     """
     tp = theXulDoc.getElementById("thread_" + name)
     if tp:
@@ -265,11 +270,13 @@ def threadPaneRemove(name,delHandle=True):
         hdl = None
       return hdl
     return None
+#? </section>    
+
 
 def threadPaneStatus(threadName,status):
     """?? Changes a thread's status display.  Can be called from any context.
-    <arg name='threadName'>The thread's name</arg>
-    <arg name='status'>The string you want displayed</arg>
+    <arg name='threadName' type="StringType">The thread's name or 'None' to mean yourself</arg>
+    <arg name='status' type="StringType">The string you want displayed</arg>
     """
     if threadName is None:
         threadName = threadhelper.threadName()

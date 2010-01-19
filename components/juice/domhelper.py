@@ -71,7 +71,7 @@ class PageEvent:
     
 #? <section name='internal'>    
   def observe(self,subject,topic,data):
-    """?? The callback that is called whenever a document event comes in"""
+    """?? The callback that is called whenever a document event comes in.  You should not call this directly."""
     if topic == "EndDocumentLoad":
       self.lock.acquire()
       try:
@@ -104,15 +104,18 @@ class PageEvent:
 
   def waitForLoad(self,maxWaitTime=15,loadnum=None):
     """?? Block this thread until the document is loaded.
+    <html>
     The typical use of this function would be something like:
+    <pre>
     deferreddomhandler.click(obj)
     pageEvent.waitForLoad()
+    </pre>
 
-    This is technically incorrect because what if the document load completed before the waitForLoad function was even called?  In practice, this never happens (faomous last words!).  Additionally, as every heavy web user knows, every once in a while the http connect gets lost and it is necessary to retry.  But the above code does not handle that case.
-    
-    The truly correct way to implement this is as follows.
+    This is technically incorrect because what if the document load completed before the waitForLoad function was even called?  In practice, this never happens (famous last words!).  Additionally, as every heavy web user knows, every once in a while the http connect gets lost and it is necessary to retry.  But the above code does not handle that case.
+    <br/>
+    The correct way to implement this is as follows.
 
-    <code>
+    <pre>
     loadnum = pageEvent.pageLoadCnt+1
     waittime = 20
     deferreddomhandler.click(obj)
@@ -121,10 +124,9 @@ class PageEvent:
     except DocLoadException, e:
       # Do something
       pass
-    </code>
-
-    It is perhaps better do us the doAndWait function which handles all of this for you.
-    
+    </pre>
+    </html>
+    It is perhaps better to use the <ref>doAndWait</ref> function which handles all of this for you.
     <arg name='maxWaitTime'>Wait a maximum of this number of seconds for an event to come in</arg>
     <arg name='loadnum'>Every time the document is loaded a counter is incremented. Your thread is not unblocked unless that counter is >= this value.  If None is passed, the load number will be 1+the current value.</arg>
     """
@@ -140,19 +142,14 @@ class PageEvent:
       self.lock.release()
 
   def doAndWait(self,op,maxWaitTime=15,numRetries=3):
-    """?? Block this thread until the document is loaded.
-    The typical use of this function would be something like:
-    deferreddomhandler.click(obj)
-    pageEvent.waitForLoad()
-
-    This is technically incorrect because what if the document load completed before the waitForLoad function was even called?  In practice, this never happens (faomous last words!).  Additionally, as every heavy web user knows, every once in a while the http connect gets lost and it is necessary to retry.  But the above code does not handle that case.
-    
-    The truly correct way to implement this is as follows.
-    loadnum = pageEvent.pageLoadCnt+1
-    deferreddomhandler.click(obj)
-    
-    <arg name='maxWaitTime'>Wait a maximum of this number of seconds for an event to come in</arg>
-    <arg name='loadnum'>Every time the document is loaded a counter is incremented. Your thread is not unblocked unless that counter is >= this value.  If None is passed, the load number will be 1+the current value.</arg>
+    """?? Execute a function and then block this thread until the document is correctly loaded.
+    Typically "op" would be a call to something like <ref>deferreddomhelper.click()</ref>.
+    This function will execute that call and then wait for the document to finish loading.
+    On document load error, it will attempt to handle the problem by refreshing the page or even going "back" and calling "op" again.
+    <arg name='op'>A lambda function to call that will cause the page to update</arg>
+    <arg name='maxWaitTime'>How long to wait for the page to refresh before retrying</arg>
+    <arg name='numRetries'>This many attempts will be undertaken to successfully load the page before giving up</arg>
+    <exception type='DocLoadException'>If the page cannot be loaded an exception will be raised</exception>
     """
     for retry in range(0,numRetries):
       self.lock.acquire()
@@ -177,18 +174,22 @@ class PageEvent:
 fuelApp = components.classes["@mozilla.org/fuel/application;1"].getService(components.interfaces.fuelIApplication)
 #fuel = fuelApp.queryInterface(components.interfaces.fuelIApplication)
 
-#?? The pageEvent Singleton object
+#?? The pageEvent Singleton object.  This object is what you use to wait for events, most importantly document reload and the associated reload failure modes.
 pageEvent = PageEvent()
 
 
 def childList(node):
-  """?? Returns a list of all children of the passed DOM node"""
+  """?? Returns a list of all children of the passed DOM node.
+  <arg name='node' type='nsIDOMNode'>a DOM node</arg>
+  """
   stl=[]
   for n in childiter(node): stl.append(n)
   return stl
 
 def childiter(node):
-  """?? Generator that iterates through all children of a DOM node"""  
+  """?? Generator that iterates through all children of a DOM node
+  <arg name='node' type='nsIDOMNode'>a DOM node</arg>
+  """  
   lst = node.childNodes
   cnt = 0
   while cnt<lst.length:
@@ -196,14 +197,18 @@ def childiter(node):
     cnt+=1
 
 def domiter(lst):
-  """?? Generator that lets you write for loops for DOM containers"""
+  """?? Generator that lets you write for loops for DOM containers
+  <arg name='lst' type='nsIDOMNodeList'>a DOM list container (actually any container will work that has .length and .item() members).</arg>
+  """
   cnt = 0
   while cnt<lst.length:
     yield lst.item(cnt)
     cnt+=1
 
 def deepiter(lst):
-  """?? Generator that iterates through all children and children's children recursively"""
+  """?? Generator that iterates through all children and children's children recursively
+  <arg name='lst' type='nsIDOMNodeList'>a DOM list container (actually any container will work that has .length and .item() members).</arg>
+  """
   cnt = 0
   while cnt<lst.length:
     yield lst.item(cnt)
@@ -215,7 +220,9 @@ def deepiter(lst):
     cnt+=1
 
 def deepChildList(node):
-  """?? Returns a list of all children and children's children recursively"""
+  """?? Returns a list of all children and children's children recursively
+  <arg name='node' type='nsIDOMNode'>a DOM node</arg>
+  """
   ret = []
   for n in deepiter(node.childNodes):
     ret.append(n)
@@ -223,7 +230,10 @@ def deepChildList(node):
 
 # lambda d: d.getElementsByTagName("h1").item(0).childNodes.item(0).nodeValue
 def getH1(doc):
-  """?? Returns the contents of the first h1 header in the document"""
+  """?? Returns the contents of the first h1 header in the document
+  <arg name='doc' type='nsIDOMDocument'>a DOM document, obtainable through the <ref>domhelper.refresh()</ref> function</arg>
+  <return type='string'>The contents of the h1 header</return>
+  """
   tag = doc.getElementsByTagName("h1").item(0)
   if tag:
       tag = tag.childNodes.item(0)
@@ -233,7 +243,10 @@ def getH1(doc):
 
 # d.getElementsByTagName("title").item(0).childNodes.item(0).nodeValue,doc)
 def getTitle(doc):
-  """?? Returns the contents of the title of the document"""
+  """?? Returns the contents of the title of the document
+  <arg name='doc' type='nsIDOMDocument'>a DOM document, obtainable through the <ref>domhelper.refresh()</ref> function</arg>
+  <return type='string'>The contents of the title</return>
+  """
   tag = doc.getElementsByTagName("title").item(0)
   if tag:
       tag = tag.childNodes.item(0)
@@ -243,7 +256,9 @@ def getTitle(doc):
 
 
 def removeChildren(node):
-    """?? Remove all children from the passed node"""
+    """?? Remove all children from the passed node
+    <arg name='node' type='nsIDOMNode'>a DOM node</arg>
+    """
     while node.hasChildNodes():
         node.removeChild(node.childNodes.item(0))
 
@@ -286,7 +301,7 @@ def bld(it,doc):
       [c /]
     [/test]
     It is also possible to pass a python function as the value of an attribute (for use with "onclick" et al).  In this case, the system automatically allocates a handle for this operation, sets the value to the correct javascript to call python with this handle, so the function will be executed see <ref>hookto</ref>  The function should take one argument "this" which will be the DOM node that the attribute is attached to.
-    <return>A DOM node and children hierarchy</return>
+    <return type='nsIDOMNode'>A DOM node and children hierarchy</return>
     """
       
     n = doc.createElement(str(it[0]))
@@ -341,7 +356,9 @@ def refresh():
   return(win,tab,doc)
 
 def attr2dict(n):
-  """?? Converts the attributes in a node to a dictionary of attribute/values.  This dictionary can be accessed outside of the browser thread"""
+  """?? Converts the attributes in a node to a dictionary of attribute/values.  This dictionary can be accessed outside of the browser thread
+  <arg name='n' type='nsIDOMNode'>a DOM node</arg>
+  """
   if not n.attributes:
     return {}
   i = 0
@@ -356,7 +373,7 @@ def attr2dict(n):
 
 def dom2str(n,indent=0,indentIncr=2):
   """?? Converts a DOM node and children back into html
-  <arg name="n">a DOM node</arg>
+  <arg name="n" type='nsIDOMNode'>a DOM node</arg>
   <arg name="indent">The initial indentation depth</arg>
   <arg name="indentIncr">The indentation increment amount (by default 2 spaces)</arg>
   <return>A string</return>
@@ -381,8 +398,8 @@ def dom2str(n,indent=0,indentIncr=2):
 # findParentWith(t,"*tag*","A")
 def findParentWith(node,attr,s):
   """?? Recursively traverse the parent links, looking for one with a particular attribute,tag, or value.
-  <arg name="node">The DOM node. This node will NOT be tested</arg>
-  <arg name="attr">The attribute to look for, or "*tag*" to test the tag, or "*value*" to test the node's value</arg>
+  <arg name="node" type='nsIDOMNode'>The DOM node. This node will NOT be tested</arg>
+  <arg name="attr" type='string'>The attribute to look for, or "*tag*" to test the tag, or "*value*" to test the node's value</arg>
   <return>None or a DOM node</return>
   """
   try:
@@ -407,9 +424,9 @@ def findParentWith(node,attr,s):
 
 def findDeepChildWith(node,attr,lst):
   """?? Recursively look for any child node with an tag,value, or attribute that matches any item in the passed list.
-  <arg name='node'>The root of dthe tree. This node itself is NOT tested</arg>
-  <arg name='attr'>Either an attribute string or the special strings: "*tag*" to mean the node's tag (or .nodeName in the DOM), "*value*" to mean text inside the node (i.e. .nodeValue in the DOM)</arg>
-  <arg name='lst'>A string or list of strings to compare against.  If any one of these strings matches, the node will be returned</arg>
+  <arg name='node' type='nsIDOMNode'>The root of the tree. This node itself is NOT tested</arg>
+  <arg name='attr' type='string'>Either an attribute string or the special strings: "*tag*" to mean the node's tag (or .nodeName in the DOM), "*value*" to mean text inside the node (i.e. .nodeValue in the DOM)</arg>
+  <arg name='lst' type='list of strings'>A string or list of strings to compare against.  If any one of these strings matches, the node will be returned</arg>
     <return>A DOM node, or None</return>
   """
   #log("findDeepChildWith(%s,%s,%s)" % (node.nodeName,attr,lst))
@@ -436,9 +453,9 @@ def findDeepChildWith(node,attr,lst):
 
 def findDeepChildrenWith(node,attr,lst):
   """?? Recursively look for all child nodes with a tag,value, or attribute that matches any item in the passed list.
-  <arg name='node'>The root of the tree. This node itself is NOT tested</arg>
-  <arg name='attr'>Either an attribute string or the special strings: "*tag*" to mean the node's tag (or .nodeName in the DOM), "*value*" to mean text inside the node (i.e. .nodeValue in the DOM)</arg>
-  <arg name='lst'>A string or list of strings to compare against.  If any one of these strings matches, the node will be added to the list of returned nodes</arg>
+  <arg name='node' type='nsIDOMNode'>The root of the tree. This node itself is NOT tested</arg>
+  <arg name='attr' type='string'>Either an attribute string or the special strings: "*tag*" to mean the node's tag (or .nodeName in the DOM), "*value*" to mean text inside the node (i.e. .nodeValue in the DOM)</arg>
+  <arg name='lst' type='list of strings'>A string or list of strings to compare against.  If any one of these strings matches, the node will be added to the list of returned nodes</arg>
   <return>A list of all matching nodes</return>
   """    
   #log("findDeepChildWith(%s,%s,%s)" % (node.nodeName,attr,lst))
