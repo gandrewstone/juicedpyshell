@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <div id="fileDetails">
+    <h2>The handle module assigns string 'handles' to any object.  The purpose is to create a cookie that can be passed into javascript or into the html/xul document.</h2>
+    <table id="fileInfoTable">
+      <tr>
+        <td><h3 id="fileName">juicedpyshell/components/juice/handle.py</h3></td>
+        <td style="align:right" id="fileLanguage">Language: python</td>
+        <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">License: ...more...</td>
+      </tr>
+      <tr oclass="fileLicense" class="hidden">
+      <td COLSPAN="3"><pre>
+MPL 1.1/GPL 2.0/LGPL 2.1
+</pre></td>
+      </tr>
+      <tr>
+        <td COLSPAN="3" id="fileDesc">If you are not familiar with a cookie the basic idea is that javascript/html/xul cannot deal with raw Python.  For example you cannot put python code in an "onclick" handler.  So instead you associate your python code with a handle, and put this handle in the "onclick" handler (its a string) with a little javascript wrapper around it that calls into Python and passes the handle back.  
+So now when the onclick handler is run, a Python function is called with your handle.  This function looks up the handle and gets the original python object and then operates on that (for example if the Python object is a function closure, it would call the function).</td>
+      </tr>
+    </table>
+    <div>
+      <div style="margin-left:-2.0em" id="sectionContentsjuicedpyshell/components/juice/handle.py">
+        <div>
+          <h2 class="varsHeader">Global Variables</h2>
+          <table cellpadding="2" cellspacing="2" style="text-align: left; width: 100%;" border="0">
+            <col width="5%" />
+            <tbody>
+              <tr class="header varsTableHeaderRow">
+                <td />
+                <th class="varsTableHeaderRowName">Name</th>
+                <th class="varsTableHeaderRowType">Type</th>
+                <th class="varsTableHeaderRowBrief">Brief</th>
+              </tr>
+              <div>
+                <tr class="rowA varsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td class="varsTableRowName">curHdl</td>
+                  <td class="varsTableRowType" />
+                  <td class="varsTableRowBrief"> The number of handles that have been created...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4"> The number of handles that have been created</td>
+                </tr>
+              </div><div>
+                <tr class="rowA varsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td class="varsTableRowName">hdlTab</td>
+                  <td class="varsTableRowType" />
+                  <td class="varsTableRowBrief"> A hash table to store the handle->object mapping...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4"> A hash table to store the handle->object mapping</td>
+                </tr>
+              </div>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h2 class="fnsHeader">Global Functions</h2>
+          <table cellpadding="2" cellspacing="2" style="text-align: left; width: 100%;" border="0">
+            <col width="5%" />
+            <tbody>
+              <tr class="header fnsTableHeaderRow">
+                <td />
+                <th>Type</th>
+                <th>Declaration</th>
+                <th>Brief</th>
+              </tr>
+              <div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>handleCreate</td>
+                  <td> Return a new handle associated with the passed object...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td />
+                          <td>it</td>
+                          <td>the object you want a handle to</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Return a new handle associated with the passed object
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>handleDelete</td>
+                  <td> Remove a handle from the lookup table...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td />
+                          <td>hdl</td>
+                          <td>the handle given to you by 'handleCreate'</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Remove a handle from the lookup table.  If you don't call this when your handle is no longer needed, you will "leak" handles and eventually run out of memory!
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>handleGet</td>
+                  <td> Look up an object based on its handle...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td />
+                          <td>hdl</td>
+                          <td> A string handle</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Look up an object based on its handle
+                    </div>
+                  </td>
+                </tr>
+              </div>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</html>

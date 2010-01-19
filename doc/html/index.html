@@ -1,0 +1,243 @@
+<html>
+	<head>
+		<script language="JavaScript">
+			 /* 
+<![CDATA[ */
+//]]>			
+
+		</script>
+		
+
+		<script language="JavaScript" src="./json2.js">
+			1;
+		</script>
+		
+
+		<script language="JavaScript" src="./jsonreq.js">
+			1;
+		</script>
+		
+
+
+		<script language="JavaScript">
+			
+var server = {};
+// RPC calls are installed here
+// End RPC call installation.
+
+		</script>
+		
+
+		<script language="JavaScript" src="yadogjs.js">
+			1;
+		</script>
+		
+
+		<link href="thelook.css" rel="stylesheet" type="text/css"/>
+		<style type="text/css">
+			
+#nothing {}
+
+		</style>
+	</head>
+	<body>
+		<table border="0%" cellspace="0%" width="100%">
+			<col width="15%"/>
+			<tbody>
+				<tr>
+					<td style="vertical-align:top; ">
+						<table border="0%" cellspace="0%" width="100%">
+							<tr>
+								<td>
+									<img height="252" id="img0" src="./medlogo.png" width="256"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span onClick="ReplaceChildrenWithUri('center','home.html'); LoadScript('centerscript','home.js');" onMouseout="this.setAttribute('style','');" onMouseover="this.setAttribute('style','color:Blue;');">
+										home
+									</span>
+									  |  
+									<span onClick="ReplaceChildrenWithUri('center','search.html'); LoadScript('centerscript','search.js');" onMouseout="this.setAttribute('style','');" onMouseover="this.setAttribute('style','color:Blue;');">
+										search
+									</span>
+									  |  
+									<span onClick="ReplaceChildrenWithUri('center','idx.html'); LoadScript('centerscript','idx.js');" onMouseout="this.setAttribute('style','');" onMouseover="this.setAttribute('style','color:Blue;');">
+										idx
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span onClick="ReplaceChildrenWithUri('center','section.html'); LoadScript('centerscript','section.js');" onMouseout="this.setAttribute('style','');" onMouseover="this.setAttribute('style','color:Blue;');">
+										section
+									</span>
+									  |  
+									<span onClick="ReplaceChildrenWithUri('center','class.html'); LoadScript('centerscript','class.js');" onMouseout="this.setAttribute('style','');" onMouseover="this.setAttribute('style','color:Blue;');">
+										class
+									</span>
+									  |  
+									<span onClick="ReplaceChildrenWithUri('center','file.html'); LoadScript('centerscript','file.js');" onMouseout="this.setAttribute('style','');" onMouseover="this.setAttribute('style','color:Blue;');">
+										file
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<br/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Quick List
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<table border="0%" cellspace="0%" width="100%">
+										<tr>
+											<td>
+												<span onClick="ReplaceChildrenWithUri('jsqfile','jsqfile.html');" onMouseout="this.setAttribute('style','');" onMouseover="this.setAttribute('style','color:Blue;');">
+													Files
+												</span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<table border="2px" cellspace="0%" class="hidden" id="qtFiles" oclass="quicktable" width="100%">
+													<tr>
+														<td>
+															<div id="jsqfile">
+																loading...
+															</div>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span onClick="ReplaceChildrenWithUri('jsqclass','jsqclass.html');" onMouseout="this.setAttribute('style','');" onMouseover="this.setAttribute('style','color:Blue;');">
+													Classes
+												</span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<table border="2px" cellspace="0%" class="hidden" id="qtClasses" oclass="quicktable" width="100%">
+													<tr>
+														<td>
+															<div id="jsqclass">
+																loading...
+															</div>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span onClick="ReplaceChildrenWithUri('jsqsec','jsqsec.html');" onMouseout="this.setAttribute('style','');" onMouseover="this.setAttribute('style','color:Blue;');">
+													Sections
+												</span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<table border="2px" cellspace="0%" class="hidden" id="qtSections" oclass="quicktable" width="100%">
+													<tr>
+														<td>
+															<div id="jsqsec">
+																loading...
+															</div>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span onClick="ReplaceChildrenWithUri('jsqhist','jsqhist.html');" onMouseout="this.setAttribute('style','');" onMouseover="this.setAttribute('style','color:Blue;');">
+													History
+												</span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<table border="2px" cellspace="0%" class="hidden" id="qtHistory" oclass="quicktable" width="100%">
+													<tr>
+														<td>
+															<div id="jsqhist">
+																loading...
+															</div>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div id="sidebar"/>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td style="vertical-align:top; ">
+						<table border="0%" cellspace="0%" width="100%">
+							<tr>
+								<td>
+									<table align="top" border="0%" cellspace="0%" width="100%">
+										<tr>
+											<td>
+												<div id="projectName">
+													Juiced PyShell: A blending of Firefox and Python
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<table border="0%" cellspace="0%" width="100%">
+													<tr>
+														<td>
+															<span id="projectVersion">
+																Version: 0.0.7.0
+															</span>
+														</td>
+														<td>
+															<span align="right" id="projectReleaseDate">
+																 Released: Jan 13,2010
+															</span>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<img height="14" id="img" src="./thinbar.png" width="800"/>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div id="center"/>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br/>
+		<br/>
+		
+
+
+
+	</body>
+</html>

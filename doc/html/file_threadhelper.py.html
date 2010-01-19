@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <div id="fileDetails">
+    <h2>Thread and Thread Pane Routines</h2>
+    <table id="fileInfoTable">
+      <tr>
+        <td><h3 id="fileName">juicedpyshell/components/juice/threadhelper.py</h3></td>
+        <td style="align:right" id="fileLanguage">Language: python</td>
+        <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">License: ...more...</td>
+      </tr>
+      <tr oclass="fileLicense" class="hidden">
+      <td COLSPAN="3"><pre>
+Version: MPL 1.1/GPL 2.0/LGPL 2.1
+The contents of this file are subject to the Mozilla Public License
+Version 1.1 (the "License"); you may not use this file except in
+compliance with the License. You may obtain a copy of the License at
+http://www.mozilla.org/MPL/
+Software distributed under the License is distributed on an "AS IS"
+basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+License for the specific language governing rights and limitations
+under the License.
+The Original Code is JuicedPyShell code.
+The Initial Developer of the Original Code is Andrew Stone
+Portions created by the Initial Developer are Copyright (C) 2010.
+All Rights Reserved.
+Contributor(s):
+  Andrew Stone
+Alternatively, the contents of this file may be used under the terms of
+either the GNU General Public License Version 2 or later (the "GPL"), or
+the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
+in which case the provisions of the GPL or the LGPL are applicable instead
+of those above. If you wish to allow use of your version of this file only
+under the terms of either the GPL or the LGPL, and not to allow others to
+use your version of this file under the terms of the MPL, indicate your
+decision by deleting the provisions above and replace them with the notice
+and other provisions required by the GPL or the LGPL. If you do not delete
+the provisions above, a recipient may use your version of this file under
+the terms of any one of the MPL, the GPL or the LGPL.
+</pre></td>
+      </tr>
+      <tr>
+        <td COLSPAN="3" id="fileDesc">This module contains some useful thread routines and connections to the thread pane in the pyShell's left-hand thread tab</td>
+      </tr>
+    </table>
+    <div>
+      <div style="margin-left:-2.0em" id="sectionContentsjuicedpyshell/components/juice/threadhelper.py">
+        <div>
+          <h2 class="varsHeader">Global Variables</h2>
+          <table cellpadding="2" cellspacing="2" style="text-align: left; width: 100%;" border="0">
+            <col width="5%" />
+            <tbody>
+              <tr class="header varsTableHeaderRow">
+                <td />
+                <th class="varsTableHeaderRowName">Name</th>
+                <th class="varsTableHeaderRowType">Type</th>
+                <th class="varsTableHeaderRowBrief">Brief</th>
+              </tr>
+              <div>
+                <tr class="rowA varsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td class="varsTableRowName">threadDb</td>
+                  <td class="varsTableRowType" />
+                  <td class="varsTableRowBrief"> Global thread database...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4"> Global thread database</td>
+                </tr>
+              </div><div>
+                <tr class="rowA varsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td class="varsTableRowName">browserContext</td>
+                  <td class="varsTableRowType" />
+                  <td class="varsTableRowBrief"> A singleton class that lets you execute functions in the web browser context...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4"> A singleton class that lets you execute functions in the web browser context</td>
+                </tr>
+              </div>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h2 class="fnsHeader">Global Functions</h2>
+          <table cellpadding="2" cellspacing="2" style="text-align: left; width: 100%;" border="0">
+            <col width="5%" />
+            <tbody>
+              <tr class="header fnsTableHeaderRow">
+                <td />
+                <th>Type</th>
+                <th>Declaration</th>
+                <th>Brief</th>
+              </tr>
+              <div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>threadStart</td>
+                  <td> Start a new thread...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td />
+                          <td>name</td>
+                          <td>A string identifier of the thread to start</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>fn</td>
+                          <td>What function to run</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>args</td>
+                          <td>A variable # of subsequent arguments that shall become arguments to the passed function</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Start a new thread
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>threadStacks</td>
+                  <td> Print the current stack trace of every thread...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                     Print the current stack trace of every thread
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>threadName</td>
+                  <td> return this thread's name...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                     return this thread's name
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>threadAbort</td>
+                  <td> Abort a thread...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td />
+                          <td>nameOrId</td>
+                          <td>A string name or numerical identifier that indicates which thread to operate on.</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Abort a thread.  This routine merely sets a global variable indicating that the thread should be aborted.  Certain functions (namely any deferred call) will check this flag and raise the ThreadAborted exception if it is True.
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>threadPause</td>
+                  <td> Pause a thread...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td />
+                          <td>nameOrId</td>
+                          <td>A string name or numerical identifier that indicates which thread to operate on.</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>state</td>
+                          <td>By default True meaning pause the thread, or pass False which means to resume it</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Pause a thread.  This routine merely sets a global variable indicating that the thread should be paused.  Certain functions (namely any deferred call) will check this flag and go into a wait loop if it is True
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>logExc</td>
+                  <td> Log an exception in pretty HTML...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                     Log an exception in pretty HTML
+                    </div>
+                  </td>
+                </tr>
+              </div>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h2 class="header classesHeader">Classes</h2>
+          <table cellpadding="2" cellspacing="2" style="text-align: left; width: 100%;" border="0">
+            <col width="5%" />
+            <tbody>
+              <tr class="header classesTableHeaderRow">
+                <td />
+                <th>Name</th>
+                <th>Brief</th>
+              </tr>
+              <div>
+                <tr class="rowA classesTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td><span onMouseout="this.setAttribute('style','');" onClick="ReplaceChildrenWithUri('center','class_ThreadAborted.html'); location.hash='top';" onMouseover="this.setAttribute('style','color:Blue;');">ThreadAborted</span></td>
+                  <td> This exception is raised when a thread is marked as aborted in the thread's context...</td>
+                </tr>
+                <tr oclass="classesTableDescRow" class="hidden">
+                  <td COLSPAN="3"> This exception is raised when a thread is marked as aborted in the thread's context</td>
+                </tr>
+              </div><div>
+                <tr class="rowA classesTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td><span onMouseout="this.setAttribute('style','');" onClick="ReplaceChildrenWithUri('center','class_Defer.html'); location.hash='top';" onMouseover="this.setAttribute('style','color:Blue;');">Defer</span></td>
+                  <td> This class lets you execute functions with another thread context....</td>
+                </tr>
+                <tr oclass="classesTableDescRow" class="hidden">
+                  <td COLSPAN="3"> This class lets you execute functions with another thread context.
+It also detects and handles thread pause and abort requests.  Usually, it is only useful through the  browserContext  object also defined in this module</td>
+                </tr>
+              </div>
+            </tbody>
+          </table>
+        </div>
+        <div id="subsection"><div>
+      <h2 class="sectionHeader" id="sectionHeaderprivate">private</h2>
+      <div style="margin-left:0.0em" id="sectionContentsprivate">
+        <div>
+          <h2 class="fnsHeader">Global Functions</h2>
+          <table cellpadding="2" cellspacing="2" style="text-align: left; width: 100%;" border="0">
+            <col width="5%" />
+            <tbody>
+              <tr class="header fnsTableHeaderRow">
+                <td />
+                <th>Type</th>
+                <th>Declaration</th>
+                <th>Brief</th>
+              </tr>
+              <div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>exc</td>
+                  <td> eval or exec depending on what is needed to get the job done!...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:8.0em">
+                     eval or exec depending on what is needed to get the job done!
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>threadWrapper</td>
+                  <td> Thread startup function...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:8.0em">
+                     Thread startup function.  Not to be called directly.
+                    </div>
+                  </td>
+                </tr>
+              </div>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h2 class="header classesHeader">Classes</h2>
+          <table cellpadding="2" cellspacing="2" style="text-align: left; width: 100%;" border="0">
+            <col width="5%" />
+            <tbody>
+              <tr class="header classesTableHeaderRow">
+                <td />
+                <th>Name</th>
+                <th>Brief</th>
+              </tr>
+              <div>
+                <tr class="rowA classesTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td><span onMouseout="this.setAttribute('style','');" onClick="ReplaceChildrenWithUri('center','class_ThreadTracker.html'); location.hash='top';" onMouseover="this.setAttribute('style','color:Blue;');">ThreadTracker</span></td>
+                  <td> One of these is created for each thread and put into the  global variable...</td>
+                </tr>
+                <tr oclass="classesTableDescRow" class="hidden">
+                  <td COLSPAN="3"> One of these is created for each thread and put into the  threadDb  global variable</td>
+                </tr>
+              </div>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div></div>
+      </div>
+    </div>
+  </div>
+</html>

@@ -1,0 +1,67 @@
+/* All pages */
+tr.header { background-color: DarkGoldenRod;}
+tr.rowA { background-color: tan;}
+tr.rowB { background-color: #e2c49C;}
+
+/* Top page */
+body{ background-color: #f0e0d0;} 
+p { color: blue; } 
+h3{ color: white; }
+#projectName { font-size:200%; color: DarkGoldenRod; }
+#projectVersion { word-spacing:30px; color: SaddleBrown; }
+#projectReleaseDate { word-spacing:30px; color: Sienna; }
+
+.quicktable { color: red; }
+/* To modify individual tables 
+#qtFiles { }
+*/
+
+/* Class details page */
+#className { color: DarkGoldenRod;}
+
+/* File Details page*/
+#fileDetails { color: DarkGoldenRod; }  /* Set your file details page defaults here */
+#fileName { color: DarkGoldenRod;}
+#fileDesc { color: DarkGoldenRod;}
+#fileLanguage { color: DarkGoldenRod;}
+.fileLicense { color: Red; }
+
+#fileInfoTable { width: 100%; }
+
+.sectionHeader { color: DarkGoldenRod;}
+/* Also you can specify
+#sectionHeader<sectionName>
+*/
+.constantsHeader { color: peru;}
+.constantsTableHeaderRow { color: tan; }
+tr.constantsTableRow { color: saddlebrown; }
+td.constantsTableType { color: saddlebrown; }
+td.constantsTableName { color: saddlebrown; }
+td.constantsTableBrief { color: saddlebrown; }
+tr.constantsTableDescRow { color: DarkRed; }
+
+.varsHeader { color: DarkGoldenRod;}
+tr.varsTableHeaderRow { color: tan; } 
+tr.varsTableRow { color: saddlebrown; } 
+tr.varsTableDescRow { color: DarkRed; }
+
+.fnsHeader { color: DarkGoldenRod;}
+tr.fnsTableHeaderRow {color: tan; }
+tr.fnsTableRow { color: saddlebrown; } 
+tr.fnsTableDescRow { color: DarkRed; }
+
+.classesHeader { color: DarkGoldenRod;}
+tr.classesTableHeaderRow { color: tan; } 
+tr.classesTableRow { color: saddlebrown; } 
+tr.classesTableDescRow { color: DarkRed; }
+
+/* Class index */
+.classIndexHeaderRow { background-color: DarkGoldenRod;}
+.classIndexRowA { background-color: tan;}
+.classIndexRowB { background-color: #e2c49C;}
+
+
+
+/* DO NOT CHANGE these classes! */
+
+.hidden { visibility:hidden; display:none; }

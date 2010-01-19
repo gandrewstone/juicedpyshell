@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <h1 id="className">PageEvent</h1>
+    <table cellpadding="2" cellspacing="2" style="text-align: left;" border="0" width="100%">
+      <col width="15%" />
+      <tbody>
+        <tr id="classFile">
+          <td>File</td>
+          <td><span onMouseout="this.setAttribute('style','');" onClick="ReplaceChildrenWithUri('center','file_domhelper.py.html'); location.hash='top';" onMouseover="this.setAttribute('style','color:Blue;');">juicedpyshell/components/juice/domhelper.py</span></td>
+        </tr>
+        <tr id="classSection">
+          <td>Section:</td>
+          <td />
+        </tr>
+      </tbody>
+    </table>
+    <h2 />
+    <div id="subsection">
+      <h3>Subsection: all</h3>
+      <h2>Member Variables</h2>
+      <table cellpadding="2" cellspacing="2" style="text-align: left; width: 100%;" border="0">
+        <col width="5%" />
+        <tbody>
+          <tr class="header memberVarHeaderRow">
+            <td />
+            <th>Type</th>
+            <th>Name</th>
+            <th>Brief</th>
+          </tr>
+        </tbody>
+      </table>
+      <h2>Methods</h2>
+      <table cellpadding="2" cellspacing="2" style="text-align: left; width: 100%;" border="0">
+        <col width="5%" />
+        <tbody>
+          <tr class="header methodHeaderRow">
+            <td />
+            <th>Type</th>
+            <th>Declaration</th>
+            <th>Brief</th>
+          </tr>
+          <div>
+          <tr class="rowA methodRowA">
+            <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');"><a name="__init__">+</a></td>
+            <td />
+            <td>__init__</td>
+            <td> Constructor...</td>
+          </tr>
+          <tr oclass="classesTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left: 4.0em">
+                     Constructor
+                    </div>
+                  </td>
+          </tr>
+          </div><div>
+          <tr class="rowA methodRowA">
+            <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');"><a name="observe">+</a></td>
+            <td />
+            <td>observe</td>
+            <td> The callback that is called whenever a document event comes in...</td>
+          </tr>
+          <tr oclass="classesTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left: 4.0em">
+                     The callback that is called whenever a document event comes in.  You should not call this directly.
+                    </div>
+                  </td>
+          </tr>
+          </div><div>
+          <tr class="rowA methodRowA">
+            <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');"><a name="inject">+</a></td>
+            <td />
+            <td>inject</td>
+            <td> This function lets you inject fake events into this class for debugging purposes....</td>
+          </tr>
+          <tr oclass="classesTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left: 4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td />
+                          <td>event</td>
+                          <td>The name of the event as specified in the Mozilla documentation (components.interfaces.nsIObserver)</td>
+                        </tr>
+                      </table>
+                    </div>
+                     This function lets you inject fake events into this class for debugging purposes.
+                    </div>
+                  </td>
+          </tr>
+          </div><div>
+          <tr class="rowA methodRowA">
+            <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');"><a name="waitForLoad">+</a></td>
+            <td />
+            <td>waitForLoad</td>
+            <td> Block this thread until the document is loaded....</td>
+          </tr>
+          <tr oclass="classesTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left: 4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td />
+                          <td>maxWaitTime</td>
+                          <td>Wait a maximum of this number of seconds for an event to come in</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>loadnum</td>
+                          <td>Every time the document is loaded a counter is incremented. Your thread is not unblocked unless that counter is >= this value.  If None is passed, the load number will be 1+the current value.</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Block this thread until the document is loaded.
+ <html linenum="105">
+The typical use of this function would be something like:
+  <pre linenum="105">
+deferreddomhandler.click(obj)
+pageEvent.waitForLoad()
+  </pre>
+This is technically incorrect because what if the document load completed before the waitForLoad function was even called?  In practice, this never happens (famous last words!).  Additionally, as every heavy web user knows, every once in a while the http connect gets lost and it is necessary to retry.  But the above code does not handle that case.
+  <br linenum="105" />
+The correct way to implement this is as follows.
+  <pre linenum="105">
+loadnum = pageEvent.pageLoadCnt+1
+waittime = 20
+deferreddomhandler.click(obj)
+try:
+  pageEvent.waitForLoad(waittime,loadnum)
+except DocLoadException, e:
+  # Do something
+  pass
+  </pre>
+</html>
+It is perhaps better to use the  doAndWait  function which handles all of this for you.
+                    </div>
+                  </td>
+          </tr>
+          </div><div>
+          <tr class="rowA methodRowA">
+            <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');"><a name="doAndWait">+</a></td>
+            <td />
+            <td>doAndWait</td>
+            <td> Execute a function and then block this thread until the document is correctly loaded....</td>
+          </tr>
+          <tr oclass="classesTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left: 4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td />
+                          <td>op</td>
+                          <td>A lambda function to call that will cause the page to update</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>maxWaitTime</td>
+                          <td>How long to wait for the page to refresh before retrying</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>numRetries</td>
+                          <td>This many attempts will be undertaken to successfully load the page before giving up</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Execute a function and then block this thread until the document is correctly loaded.
+Typically "op" would be a call to something like  deferreddomhelper.click() .
+This function will execute that call and then wait for the document to finish loading.
+On document load error, it will attempt to handle the problem by refreshing the page or even going "back" and calling "op" again.
+                    </div>
+                  </td>
+          </tr>
+          </div>
+        </tbody>
+      </table>
+    </div>
+  </html>

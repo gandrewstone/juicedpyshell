@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <div id="fileDetails">
+    <h2>Helper routines to manipulate the DOM (Document Object Model).</h2>
+    <table id="fileInfoTable">
+      <tr>
+        <td><h3 id="fileName">juicedpyshell/components/juice/domhelper.py</h3></td>
+        <td style="align:right" id="fileLanguage">Language: python</td>
+        <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">License: ...more...</td>
+      </tr>
+      <tr oclass="fileLicense" class="hidden">
+      <td COLSPAN="3"><pre>
+Version: MPL 1.1/GPL 2.0/LGPL 2.1
+The contents of this file are subject to the Mozilla Public License
+Version 1.1 (the "License"); you may not use this file except in
+compliance with the License. You may obtain a copy of the License at
+http://www.mozilla.org/MPL/
+Software distributed under the License is distributed on an "AS IS"
+basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+License for the specific language governing rights and limitations
+under the License.
+The Original Code is PyShell code.
+The Initial Developer of the Original Code is Andrew Stone
+Portions created by the Initial Developer are Copyright (C) 2010.
+All Rights Reserved.
+Contributor(s):
+  Andrew Stone
+Alternatively, the contents of this file may be used under the terms of
+either the GNU General Public License Version 2 or later (the "GPL"), or
+the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
+in which case the provisions of the GPL or the LGPL are applicable instead
+of those above. If you wish to allow use of your version of this file only
+under the terms of either the GPL or the LGPL, and not to allow others to
+use your version of this file under the terms of the MPL, indicate your
+decision by deleting the provisions above and replace them with the notice
+and other provisions required by the GPL or the LGPL. If you do not delete
+the provisions above, a recipient may use your version of this file under
+the terms of any one of the MPL, the GPL or the LGPL.
+</pre></td>
+      </tr>
+      <tr>
+        <td COLSPAN="3" id="fileDesc">This file contains helper functions used to manipulate the DOM.
+These function must be called within the browser's threaad, NOT within any thread spawn by you.  Therefore you may want to use the functions in deferreddomhelper  instead since these will work in any context.
+</td>
+      </tr>
+    </table>
+    <div>
+      <div style="margin-left:-2.0em" id="sectionContentsjuicedpyshell/components/juice/domhelper.py">
+        <div>
+          <h2 class="varsHeader">Global Variables</h2>
+          <table cellpadding="2" cellspacing="2" style="text-align: left; width: 100%;" border="0">
+            <col width="5%" />
+            <tbody>
+              <tr class="header varsTableHeaderRow">
+                <td />
+                <th class="varsTableHeaderRowName">Name</th>
+                <th class="varsTableHeaderRowType">Type</th>
+                <th class="varsTableHeaderRowBrief">Brief</th>
+              </tr>
+              <div>
+                <tr class="rowA varsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td class="varsTableRowName">fuelApp</td>
+                  <td class="varsTableRowType" />
+                  <td class="varsTableRowBrief"> The Mozilla components.interfaces.fuelIApplication object...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4"> The Mozilla components.interfaces.fuelIApplication object</td>
+                </tr>
+              </div><div>
+                <tr class="rowA varsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td class="varsTableRowName">pageEvent</td>
+                  <td class="varsTableRowType" />
+                  <td class="varsTableRowBrief"> The pageEvent Singleton object...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4"> The pageEvent Singleton object.  This object is what you use to wait for events, most importantly document reload and the associated reload failure modes.</td>
+                </tr>
+              </div>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h2 class="fnsHeader">Global Functions</h2>
+          <table cellpadding="2" cellspacing="2" style="text-align: left; width: 100%;" border="0">
+            <col width="5%" />
+            <tbody>
+              <tr class="header fnsTableHeaderRow">
+                <td />
+                <th>Type</th>
+                <th>Declaration</th>
+                <th>Brief</th>
+              </tr>
+              <div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>childList</td>
+                  <td> Returns a list of all children of the passed DOM node....</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td>nsIDOMNode</td>
+                          <td>node</td>
+                          <td>a DOM node</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Returns a list of all children of the passed DOM node.
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>childiter</td>
+                  <td> Generator that iterates through all children of a DOM node...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td>nsIDOMNode</td>
+                          <td>node</td>
+                          <td>a DOM node</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Generator that iterates through all children of a DOM node
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>domiter</td>
+                  <td> Generator that lets you write for loops for DOM containers...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td>nsIDOMNodeList</td>
+                          <td>lst</td>
+                          <td>a DOM list container (actually any container will work that has .length and .item() members).</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Generator that lets you write for loops for DOM containers
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>deepiter</td>
+                  <td> Generator that iterates through all children and children's children recursively...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td>nsIDOMNodeList</td>
+                          <td>lst</td>
+                          <td>a DOM list container (actually any container will work that has .length and .item() members).</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Generator that iterates through all children and children's children recursively
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>deepChildList</td>
+                  <td> Returns a list of all children and children's children recursively...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td>nsIDOMNode</td>
+                          <td>node</td>
+                          <td>a DOM node</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Returns a list of all children and children's children recursively
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>getH1</td>
+                  <td> Returns the contents of the first h1 header in the document...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td>nsIDOMDocument</td>
+                          <td>doc</td>
+                          <td>a DOM document, obtainable through the  domhelper.refresh()  function</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Returns the contents of the first h1 header in the document
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>getTitle</td>
+                  <td> Returns the contents of the title of the document...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td>nsIDOMDocument</td>
+                          <td>doc</td>
+                          <td>a DOM document, obtainable through the  domhelper.refresh()  function</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Returns the contents of the title of the document
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>removeChildren</td>
+                  <td> Remove all children from the passed node...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td>nsIDOMNode</td>
+                          <td>node</td>
+                          <td>a DOM node</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Remove all children from the passed node
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>hookto</td>
+                  <td> Attaches a python function closure to a node and event....</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td />
+                          <td>fn</td>
+                          <td>A python function (or lambda) event handler</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>args</td>
+                          <td>A tuple containing the arguments to your function</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>node</td>
+                          <td>The DOM node to hook this function into</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>event</td>
+                          <td>What DOM event do you want to call this function for? Default: onclick</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Attaches a python function closure to a node and event.
+This function creates sets the event attribute (by default "onclick") of a DOM node to execute the passed Python function with the passed args.
+It is implemented by mapping a newly created handle to the function and arguments, and setting the event attribute to a chunk of Javascript code that
+calls into pyShell with the handle.  Inside the pyShell thread, the handle is accessed and so the function you passed is called.
+This means that your function will be called within the browser's context, so "deferred" calls are not necessary.
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>bld</td>
+                  <td> This function takes a structure and turns it into DOM elements...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                     This function takes a structure and turns it into DOM elements.  The structure is recursive of the format: (tag,{attributes},[children]).
+For example: bld(("test",{"foo":"bar"},[("c",None,None)])) would create the following xml ([] used instead of lt,gt so this example is not interpreted as XML):
+[test foo="bar"]
+  [c /]
+[/test]
+It is also possible to pass a python function as the value of an attribute (for use with "onclick" et al).  In this case, the system automatically allocates a handle for this operation, sets the value to the correct javascript to call python with this handle, so the function will be executed see  hookto   The function should take one argument "this" which will be the DOM node that the attribute is attached to.
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>mouse</td>
+                  <td> Simulate a mouse event...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td />
+                          <td>doc</td>
+                          <td>The DOM Document</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>ident</td>
+                          <td>The DOM Node to simulate the event in, OR a string containing a node ID</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>event</td>
+                          <td>What event to simulate. By default a "click" event is Simulated</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Simulate a mouse event.  Note to simulate the exact mouse behavior when the user 'clicks', it is best to use  deferreddomhelper.click .
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>refresh</td>
+                  <td> Grab the object describing in the active window, the active tab, and the active document...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                     Grab the object describing in the active window, the active tab, and the active document
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>attr2dict</td>
+                  <td> Converts the attributes in a node to a dictionary of attribute/values...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td>nsIDOMNode</td>
+                          <td>n</td>
+                          <td>a DOM node</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Converts the attributes in a node to a dictionary of attribute/values.  This dictionary can be accessed outside of the browser thread
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>dom2str</td>
+                  <td> Converts a DOM node and children back into html...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td>nsIDOMNode</td>
+                          <td>n</td>
+                          <td>a DOM node</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>indent</td>
+                          <td>The initial indentation depth</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>indentIncr</td>
+                          <td>The indentation increment amount (by default 2 spaces)</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Converts a DOM node and children back into html
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>findParentWith</td>
+                  <td> Recursively traverse the parent links, looking for one with a particular attribute,tag, or value....</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td>nsIDOMNode</td>
+                          <td>node</td>
+                          <td>The DOM node. This node will NOT be tested</td>
+                        </tr><tr class="rowA argRow">
+                          <td>string</td>
+                          <td>attr</td>
+                          <td>The attribute to look for, or "*tag*" to test the tag, or "*value*" to test the node's value</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Recursively traverse the parent links, looking for one with a particular attribute,tag, or value.
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>findDeepChildWith</td>
+                  <td> Recursively look for any child node with an tag,value, or attribute that matches any item in the passed list....</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td>nsIDOMNode</td>
+                          <td>node</td>
+                          <td>The root of the tree. This node itself is NOT tested</td>
+                        </tr><tr class="rowA argRow">
+                          <td>string</td>
+                          <td>attr</td>
+                          <td>Either an attribute string or the special strings: "*tag*" to mean the node's tag (or .nodeName in the DOM), "*value*" to mean text inside the node (i.e. .nodeValue in the DOM)</td>
+                        </tr><tr class="rowA argRow">
+                          <td>list of strings</td>
+                          <td>lst</td>
+                          <td>A string or list of strings to compare against.  If any one of these strings matches, the node will be returned</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Recursively look for any child node with an tag,value, or attribute that matches any item in the passed list.
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>findDeepChildrenWith</td>
+                  <td> Recursively look for all child nodes with a tag,value, or attribute that matches any item in the passed list....</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td>nsIDOMNode</td>
+                          <td>node</td>
+                          <td>The root of the tree. This node itself is NOT tested</td>
+                        </tr><tr class="rowA argRow">
+                          <td>string</td>
+                          <td>attr</td>
+                          <td>Either an attribute string or the special strings: "*tag*" to mean the node's tag (or .nodeName in the DOM), "*value*" to mean text inside the node (i.e. .nodeValue in the DOM)</td>
+                        </tr><tr class="rowA argRow">
+                          <td>list of strings</td>
+                          <td>lst</td>
+                          <td>A string or list of strings to compare against.  If any one of these strings matches, the node will be added to the list of returned nodes</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Recursively look for all child nodes with a tag,value, or attribute that matches any item in the passed list.
+                    </div>
+                  </td>
+                </tr>
+              </div>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h2 class="header classesHeader">Classes</h2>
+          <table cellpadding="2" cellspacing="2" style="text-align: left; width: 100%;" border="0">
+            <col width="5%" />
+            <tbody>
+              <tr class="header classesTableHeaderRow">
+                <td />
+                <th>Name</th>
+                <th>Brief</th>
+              </tr>
+              <div>
+                <tr class="rowA classesTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td><span onMouseout="this.setAttribute('style','');" onClick="ReplaceChildrenWithUri('center','class_DocLoadException.html'); location.hash='top';" onMouseover="this.setAttribute('style','color:Blue;');">DocLoadException</span></td>
+                  <td> This exception is raised when the document is unable to be loaded in all threads that are waiting for the load to finish...</td>
+                </tr>
+                <tr oclass="classesTableDescRow" class="hidden">
+                  <td COLSPAN="3"> This exception is raised when the document is unable to be loaded in all threads that are waiting for the load to finish
+    </td>
+                </tr>
+              </div><div>
+                <tr class="rowA classesTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td><span onMouseout="this.setAttribute('style','');" onClick="ReplaceChildrenWithUri('center','class_PageEvent.html'); location.hash='top';" onMouseover="this.setAttribute('style','color:Blue;');">PageEvent</span></td>
+                  <td> The PageEvent class registers for page events and reports them...</td>
+                </tr>
+                <tr oclass="classesTableDescRow" class="hidden">
+                  <td COLSPAN="3"> The PageEvent class registers for page events and reports them.  In particular, it is able to notify threads when a document is finished loading and whether the load failed.
+  </td>
+                </tr>
+              </div>
+            </tbody>
+          </table>
+        </div>
+        <div id="subsection"><div>
+      <h2 class="sectionHeader" id="sectionHeaderinternal">internal</h2>
+      <div style="margin-left:0.0em" id="sectionContentsinternal" />
+    </div></div>
+      </div>
+    </div>
+  </div>
+</html>

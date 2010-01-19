@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <div id="fileDetails">
+    <h2>Helper routines to manipulate the DOM (Document Object Model).</h2>
+    <table id="fileInfoTable">
+      <tr>
+        <td><h3 id="fileName">juicedpyshell/components/juice/deferreddomhelper.py</h3></td>
+        <td style="align:right" id="fileLanguage">Language: python</td>
+        <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">License: MPL 1.1, GPL 2.0, or LGPL 2.1</td>
+      </tr>
+      <tr oclass="fileLicense" class="hidden">
+      <td COLSPAN="3"><pre>
+The contents of this file are subject to the Mozilla Public License
+Version 1.1 (the "License"); you may not use this file except in
+compliance with the License. You may obtain a copy of the License at
+http://www.mozilla.org/MPL/
+Software distributed under the License is distributed on an "AS IS"
+basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+License for the specific language governing rights and limitations
+under the License.
+The Original Code is PyShell code.
+The Initial Developer of the Original Code is Andrew Stone
+Portions created by the Initial Developer are Copyright (C) 2010.
+All Rights Reserved.
+Contributor(s):
+  Andrew Stone
+Alternatively, the contents of this file may be used under the terms of
+either the GNU General Public License Version 2 or later (the "GPL"), or
+the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
+in which case the provisions of the GPL or the LGPL are applicable instead
+of those above. If you wish to allow use of your version of this file only
+under the terms of either the GPL or the LGPL, and not to allow others to
+use your version of this file under the terms of the MPL, indicate your
+decision by deleting the provisions above and replace them with the notice
+and other provisions required by the GPL or the LGPL. If you do not delete
+the provisions above, a recipient may use your version of this file under
+the terms of any one of the MPL, the GPL or the LGPL.
+</pre></td>
+      </tr>
+      <tr>
+        <td COLSPAN="3" id="fileDesc"> <html linenum="1">
+This file contains helper functions used to manipulate the DOM.  These function may be called within any context.  If not in the browser's thread, the call will be pushed onto a work queue and this thread will be blocked.
+  <br linenum="1" />
+Periodically the browser thread will execute items on the work queue, and unblock the thread when complete.  All of these functions begin with d_, however if the NODS variable is set to true (and it is by default) in this file, then every d_ function will have an equivalent without that prefix.  The purpose of this is to avoid conflicts with the functions defined in domhelper.
+  <br linenum="1" />
+Note that any function can be deferred into the browser thread using the "browserContext" object.  So a lot of these routines are simply for convenience and code beautification.  For example:
+  <pre linenum="1">
+import deferreddomhelper as ddh
+(app,tab,doc) = ddh.refresh() 
+# These 2 lines get the same element in two different ways
+aNode       = ddh.browserContext.call(lambda d: d.getElementById("anIdentifier",doc)
+theSameNode = ddh.getElementById("anIdentifier")
+  </pre>
+</html>
+</td>
+      </tr>
+    </table>
+    <div>
+      <div style="margin-left:-2.0em" id="sectionContentsjuicedpyshell/components/juice/deferreddomhelper.py">
+        <div>
+          <h2 class="varsHeader">Global Variables</h2>
+          <table cellpadding="2" cellspacing="2" style="text-align: left; width: 100%;" border="0">
+            <col width="5%" />
+            <tbody>
+              <tr class="header varsTableHeaderRow">
+                <td />
+                <th class="varsTableHeaderRowName">Name</th>
+                <th class="varsTableHeaderRowType">Type</th>
+                <th class="varsTableHeaderRowBrief">Brief</th>
+              </tr>
+              <div>
+                <tr class="rowA varsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td class="varsTableRowName">NODS</td>
+                  <td class="varsTableRowType" />
+                  <td class="varsTableRowBrief"> This variable controls whether this module defines symbols without the "d_" for example "deepChildList"...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4"> This variable controls whether this module defines symbols without the "d_" for example "deepChildList"</td>
+                </tr>
+              </div>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h2 class="fnsHeader">Global Functions</h2>
+          <table cellpadding="2" cellspacing="2" style="text-align: left; width: 100%;" border="0">
+            <col width="5%" />
+            <tbody>
+              <tr class="header fnsTableHeaderRow">
+                <td />
+                <th>Type</th>
+                <th>Declaration</th>
+                <th>Brief</th>
+              </tr>
+              <div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>d_refresh</td>
+                  <td> Grab the object describing in the active window, the active tab, and the active document...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                     Grab the object describing in the active window, the active tab, and the active document
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>d_getTagSurroundingText</td>
+                  <td> Search for some text and return the closest parent (surrounding) node that matches a specified tag....</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td />
+                          <td>tag</td>
+                          <td>What xml tag to look for</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>text</td>
+                          <td>What to look for</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>node</td>
+                          <td>Search this node and all children recursively</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Search for some text and return the closest parent (surrounding) node that matches a specified tag.
+For example, this routine can be used to discover the hyperlink connected to some text in the following way:
+getTagSurroundingText("A","click me")
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>d_getElementById</td>
+                  <td> Deferred version of the DOM getElementById function call...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                     Deferred version of the DOM getElementById function call
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>d_deepChildList</td>
+                  <td> Returns a list of all children and children's children recursively...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                     Returns a list of all children and children's children recursively
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>d_getTitle</td>
+                  <td> Returns the contents of the title of the document...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                     Returns the contents of the title of the document
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>d_getH1</td>
+                  <td> Returns the contents of the first h1 header in the document...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                     Returns the contents of the first h1 header in the document
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>d_click</td>
+                  <td> Simulates a mouse click on a node and optionally waits for it to take effect....</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td />
+                          <td>id</td>
+                          <td>The DOM node to "click".  Note if you "click" a DOM node that is not a href and does not have a click handler, Mozilla will propagate the click upwards to the parent that DOES have a click handler</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>id</td>
+                          <td>DOM node or string identifying the desired DOM node to be clicked.</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>wait4Load</td>
+                          <td>If True (the default) this routine will not return until the click has loaded another document.  If False, the routine will return right away</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Simulates a mouse click on a node and optionally waits for it to take effect.
+This function simulates a mouse click by issuing the following events: mouseover, mousedown, mouseup,click, mouseout.
+It then optionally waits for a new page to be loaded in the browser.
+If certain errors occur during loading "Page Load Error", and "Concurrency conflict", then click will be retried
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>d_mouse</td>
+                  <td> Simulate a mouse event...</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td />
+                          <td>doc</td>
+                          <td>The DOM Document</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>ident</td>
+                          <td>The DOM Node to simulate the event in, OR a string containing a node ID</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>event</td>
+                          <td>What event to simulate. By default a "click" event is Simulated</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Simulate a mouse event.  Note to simulate the exact mouse behavior when the user 'clicks', it is best to use  deferreddomhelper.click .
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>d_findParentWith</td>
+                  <td> Recursively traverse the parent links, looking for one with a particular attribute,tag, or value....</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td />
+                          <td>node</td>
+                          <td>The DOM node. This node will NOT be tested</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>attr</td>
+                          <td>The attribute to look for, or "*tag*" to test the tag, or "*value*" to test the node's value</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Recursively traverse the parent links, looking for one with a particular attribute,tag, or value.
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>d_findDeepChildWith</td>
+                  <td> Recursively look for any child node with an tag,value, or attribute that matches any item in the passed list....</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td />
+                          <td>node</td>
+                          <td>The root of dthe tree. This node itself is NOT tested</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>attr</td>
+                          <td>Either an attribute string or the special strings: "*tag*" to mean the node's tag (or .nodeName in the DOM), "*value*" to mean text inside the node (i.e. .nodeValue in the DOM)</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>lst</td>
+                          <td>A string or list of strings to compare against.  If any one of these strings matches, the node will be returned</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Recursively look for any child node with an tag,value, or attribute that matches any item in the passed list.
+                    </div>
+                  </td>
+                </tr>
+              </div><div>
+                <tr class="rowA fnsTableRow">
+                  <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">+</td>
+                  <td />
+                  <td>d_findDeepChildrenWith</td>
+                  <td> Recursively look for all child nodes with a tag,value, or attribute that matches any item in the passed list....</td>
+                </tr>
+                <tr oclass="varsTableDescRow" class="hidden">
+                  <td COLSPAN="4">
+                    <div style="margin-left:4.0em">
+                    <div>
+                      <table style="width: 100%;" class="argTable">
+                        <tr class="tableTitle argTableTitle">
+                          <th COLSPAN="3">Parameters</th>
+                        </tr>
+                        <tr class="header argHeader">
+                          <th>Type</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr class="rowA argRow">
+                          <td />
+                          <td>node</td>
+                          <td>The root of the tree. This node itself is NOT tested</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>attr</td>
+                          <td>Either an attribute string or the special strings: "*tag*" to mean the node's tag (or .nodeName in the DOM), "*value*" to mean text inside the node (i.e. .nodeValue in the DOM)</td>
+                        </tr><tr class="rowA argRow">
+                          <td />
+                          <td>lst</td>
+                          <td>A string or list of strings to compare against.  If any one of these strings matches, the node will be added to the list of returned nodes</td>
+                        </tr>
+                      </table>
+                    </div>
+                     Recursively look for all child nodes with a tag,value, or attribute that matches any item in the passed list.
+                    </div>
+                  </td>
+                </tr>
+              </div>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</html>
