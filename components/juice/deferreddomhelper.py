@@ -109,8 +109,8 @@ def d_click(doc,id,wait4Load=True):
   This function simulates a mouse click by issuing the following events: mouseover, mousedown, mouseup,click, mouseout.
   It then optionally waits for a new page to be loaded in the browser.
   If certain errors occur during loading "Page Load Error", and "Concurrency conflict", then click will be retried
-  <arg name='id'>The DOM node to "click".  Note if you "click" a DOM node that is not a href and does not have a click handler, Mozilla will propagate the click upwards to the parent that DOES have a click handler</arg>
-  <arg name='id'>DOM node or string identifying the desired DOM node to be clicked.</arg>
+  <arg name='doc'>The enclosing document</arg>
+  <arg name='id' type="nsIDOM3Node or StringType">The DOM node to "click".  Note if you "click" a DOM node that is not a href and does not have a click handler, Mozilla will propagate the click upwards to the parent that DOES have a click handler</arg>
   <arg name='wait4Load'>If True (the default) this routine will not return until the click has loaded another document.  If False, the routine will return right away</arg>
   <return>(win,tab,doc) of the new page if wait4Load is True, otherwise (None,None,None)</return>
   """
@@ -149,6 +149,7 @@ def d_findParentWith(node,attr,s):
   """?? Recursively traverse the parent links, looking for one with a particular attribute,tag, or value.
   <arg name="node">The DOM node. This node will NOT be tested</arg>
   <arg name="attr">The attribute to look for, or "*tag*" to test the tag, or "*value*" to test the node's value</arg>
+  <arg name="s" type="StringType">The value to look for, or a list of values</arg>  
   <return>None or a DOM node</return>
   """
   return browserContext.call(lambda x,y,z: dh.findParentWith(x,y,z),node,attr,s)
@@ -169,7 +170,7 @@ def d_findDeepChildrenWith(node,attr,lst):
   <arg name='lst'>A string or list of strings to compare against.  If any one of these strings matches, the node will be added to the list of returned nodes</arg>
   <return>A list of all matching nodes</return>
   """
-  return browserContext.call(lambda x,y,z: dh.findDeepChildrenWith(x,y,z),node,attr,s)
+  return browserContext.call(lambda x,y,z: dh.findDeepChildrenWith(x,y,z),node,attr,lst)
 
 # Add the other symbols if desired
 if NODS:

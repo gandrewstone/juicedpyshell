@@ -166,7 +166,7 @@ def addSidebarTab(label,contents=None):
     """
     sp = theXulDoc.getElementById("sidepanel")
     sp.childNodes.item(0).appendChild(dh.bld(("tab",{"label":label, "id":label},None),theXulDoc))
-    sp.childNodes.item(1).appendChild(dh.bld(("tabpanel",{"flex":"1", "id":"panel_" + label},contents)))
+    sp.childNodes.item(1).appendChild(dh.bld(("tabpanel",{"flex":"1", "id":"panel_" + label},contents),theXulDoc))
     return "panel_" + label
 
 

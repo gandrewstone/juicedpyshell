@@ -177,6 +177,17 @@ fuelApp = components.classes["@mozilla.org/fuel/application;1"].getService(compo
 #?? The pageEvent Singleton object.  This object is what you use to wait for events, most importantly document reload and the associated reload failure modes.
 pageEvent = PageEvent()
 
+def load(uriStr,tab=None):
+    """?? Loads a URI up in the browser
+    <arg name='uriStr' type='StringType'>A uri, i.e. 'http:://www.google.com/'</arg>
+    <arg name='tab' type='fuelIBrowserTab'>The tab to load the page into (or None) to mean the current tab</arg>
+    """
+    uriFactory = components.classes["@mozilla.org/network/io-service;1"].getService(components.interfaces.nsIIOService)
+    uri = uriFactory.newURI(uriStr,"utf-8",None)
+    if not tab: (win,tab,doc) = refresh()
+    tab.load(uri)
+    return uri
+
 
 def childList(node):
   """?? Returns a list of all children of the passed DOM node.
@@ -291,16 +302,23 @@ def hookto(fn, args, node,event="onclick"):
     """
     hdl = handleCreate((fn,args));
     node.setAttribute(event,'_pyEvalSvc.evalPythonString("**%s")' % hdl)
+    node.setAttribute(event + "hdl", str(hdl))
     return hdl
 
 
 def bld(it,doc):
-    """?? This function takes a structure and turns it into DOM elements.  The structure is recursive of the format: (tag,{attributes},[children]).
+    """?? This function takes a structure and turns it into DOM elements.
+    <arg name='it' type='tuple (see description)'>Turn this into DOM elements</arg>
+    <arg name='doc' type='nsIDOMDocument'>Pass the document that the elements will be put into</arg>
+    <html>
+    The structure is recursive of the format: (tag,{attributes},[children]).
     For example: bld(("test",{"foo":"bar"},[("c",None,None)])) would create the following xml ([] used instead of lt,gt so this example is not interpreted as XML):
     [test foo="bar"]
       [c /]
     [/test]
+    </html>
     It is also possible to pass a python function as the value of an attribute (for use with "onclick" et al).  In this case, the system automatically allocates a handle for this operation, sets the value to the correct javascript to call python with this handle, so the function will be executed see <ref>hookto</ref>  The function should take one argument "this" which will be the DOM node that the attribute is attached to.
+    
     <return type='nsIDOMNode'>A DOM node and children hierarchy</return>
     """
       
