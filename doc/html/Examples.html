@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <div><div>
+      <h2>Examples</h2>
+      <div id="subsection"><div>
+      <h2>Driving The Browser</h2>
+ <html>
+This example demonstrates how to drive the web browser.  It goes to google, enters a search, and then follows a link to the searched page
+  <br />
+  <pre class="code">
+# Standard imports
+import deferreddomhelper as ddh
+#import domhelper as dh
+#
+    <br />
+# First we'll go over to google and search for something
+(win,tab,doc) = ddh.refresh()                                                # Get the "active" browser page
+ddh.load("http://www.google.com/",tab)                                       # Pop over to google search engine
+(win,tab,doc)=ddh.refresh()                                                  # Get the search engine DOM
+#
+    <br />
+# Now I'll access the DOM with names discovered by looking at the html source.
+# This code fill in a search term, clicks a button and submits the form.
+qbox = ddh.findDeepChildWith(doc,"name","q")                                  # Get the search input box
+qbox.value = "JuicedPyShell"                                                 # Add in my search term
+button = ddh.findDeepChildWith(doc,"title","Google Search")                   # Get the button
+ddh.click(doc,button,False)                                                  # "click" just the button
+form = ddh.findParentWith(button,"*tag*","FORM")                              # Get the enclosing form
+form.submit()                                                                # submit the form
+#
+    <br />
+# Now wait for the page to load
+dh.pageEvent.waitForLoad()                                                   # Wait for the search page to load
+(win,tab,doc)=ddh.refresh()                                                  # Get the new DOM
+#
+    <br />
+# Then we'll look for a particular search result and follow that
+link = ddh.getTagSurroundingText("A","Project Hosting on Google Code",doc)   # Look for the "A" DOM node (i.e. link) that encloses some text
+ddh.click(doc,link,False)                                                    # Click that text
+  </pre>
+</html>
+Note the use of the "ddh" module or "deferreddomhelper".  This module can be used in spawned threads.  The equivalently named functions in the "domhelper" module CAN ONLY be used in the Juiced PyShell main thread!  You CANNOT directly touch the DOM from spawned threads!  If your browser crashes, that's what happened!
+[Note: the way deferreddomhelper works is to put your function on a job list, and the Juiced PyShell main thread periodically executes the jobs on this list]
+    </div></div><div id="subsection"><div>
+      <h2>Printing HTML</h2>
+ <html>
+  <textarea style="font-family:monospace" rows="12" cols="80">
+import dynxul
+# Let's print a red header
+dynxul.hprt("
+    <h1 style="color:red">
+    RED HEADING
+    </h1>
+  ")
+# Now let's print an image
+dynxul.hprt("
+    <img src="http://juicedpyshell.googlecode.com/svn/trunk/doc/html/medlogo.png" />
+  ")
+  </textarea>
+  <h3>
+   Output 
+  </h3>
+The output should look like this:
+  <div>
+    <h1 style="color:red">
+    RED HEADING
+    </h1>
+  </div>
+  <div>
+  None
+  </div>
+  <div>
+    <img src="http://juicedpyshell.googlecode.com/svn/trunk/doc/html/medlogo.png" />
+  </div>
+  <div>
+  None
+  </div>
+</html>
+    </div></div><div id="subsection"><div>
+      <h2>Threading</h2>
+Cut and paste this into your Juiced PyShell window.
+ <html>
+  <pre>
+# Threading Example
+import time
+import dynxul
+def countdown(amt): 
+  while amt > 0: 
+    time.sleep(1)
+    dynxul.threadPaneStatus(None,"Countdown %d" % amt)
+    amt -= 1
+  </pre>
+</html>
+Now spawn off a thread running your code
+ <html>
+  <pre>
+!run countdown(10)
+  </pre>
+</html>
+Note how the thread appears in the thread status tab in the left sidebar.  And note how the countdown function can modify its status.
+    </div></div><div id="subsection"><div>
+      <h2>Modifying the JuicedPyShell GUI</h2>
+This example shows how to modify the Juiced PyShell GUI itself.  It adds a new tab to the sidebar and specifies 2 buttons in that tab.  The buttons are hooked to Python functions when clicked.
+Next it shows how to modify what Python function is called when the button is clicked.  This technique is useful for debugging!
+ <html>
+  <textarea style="font-family:monospace" rows="20" cols="120">
+# Modifying the JuicedPyShell frame
+import dynxul
+# Define a button handler function.  There's nothing special except that it takes 1 argument, which will be the XUL DOM object of the clicked button
+# Note that this function saves the handle it uses to a global variable.  The purpose of this is so we can modify that handle later (and therefore modify the button's behavior.
+myHdl = None
+def myfunc(this):
+ global myHdl
+ myHdl = this.getAttribute("onclickhdl")
+ dynxul.hprt("The button you pressed is labelled '%s'.\nThe onclick handle is '%s'." % (this.getAttribute("label"),this.getAttribute("onclickhdl")))
+# This defines the new GUI look and feel.  To understand this you have to be familiar with XUL.
+tabSpec = ("vbox",{"flex":1},[("button", {"label":"Print The Time","onclick":lambda x: dynxul.hprt("
+    <h2>
+    " + time.asctime() + "
+    </h2>
+  ")},None),("button",{"label":"Click Me!","onclick":myfunc},None)])
+# Ok now add the new tab!
+dynxul.addSidebarTab("Example",[tabSpec])
+  </textarea>
+  <br />
+Test this by pressing the 2 buttons.  You should see the time appear in the Juiced PyShell window (you may need to scroll down).  And you should see the button clicked message.  
+  <br />
+Now let's modify the handler function.  We squirreled the handle away into a global variable, so it will be easy to just modify the handle.  Incidently, you could also modify the behavior by changing the DOM using the dynxul.theXulDoc global variable.
+  <br />
+  <textarea style="font-family:monospace" rows="11" cols="120">
+import handle
+# Define a new function
+def myfunc2(this):
+ dynxul.hprt("""
+    <h2 style="color:yellow">
+    The button you pressed is labelled '%s'.\nThe onclick handle is '%s'.
+    </h2>
+  """ % (this.getAttribute("label"),this.getAttribute("onclickhdl")))
+tmp = handle.hdlTab[myHdl]                 # Temporarily store what's currently there
+handle.hdlTab[myHdl] = (myfunc2,tmp[1])    # Overwrite it with my new function, but keep the same argument
+  </textarea>
+  <br />
+Now click the "Click Me!" button again and this new function (which prints in yellow) will be executed.
+</html>
+    </div></div>
+    </div></div>
+  </html>

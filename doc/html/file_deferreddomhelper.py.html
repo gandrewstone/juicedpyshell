@@ -4,7 +4,7 @@
     <h2>Helper routines to manipulate the DOM (Document Object Model).</h2>
     <table id="fileInfoTable">
       <tr>
-        <td><h3 id="fileName">juicedpyshell/components/juice/deferreddomhelper.py</h3></td>
+        <td><h3 id="fileName">File: juicedpyshell/components/juice/deferreddomhelper.py</h3></td>
         <td style="align:right" id="fileLanguage">Language: python</td>
         <td onclick="swapAttr(this.parentNode.nextSibling.nextSibling,'class','oclass');">License: MPL 1.1, GPL 2.0, or LGPL 2.1</td>
       </tr>
@@ -102,7 +102,10 @@ theSameNode = ddh.getElementById("anIdentifier")
                 </tr>
                 <tr oclass="varsTableDescRow" class="hidden">
                   <td COLSPAN="4">
-                    <div style="margin-left:4.0em">
+                    <div style="margin-left: 4.0em" class="desc classMethodDesc">
+                    <br /><center class="descHeader">Declaration</center>
+                    d_refresh
+                    <br /><center class="descHeader">Description</center>
                      Grab the object describing in the active window, the active tab, and the active document
                     </div>
                   </td>
@@ -116,12 +119,12 @@ theSameNode = ddh.getElementById("anIdentifier")
                 </tr>
                 <tr oclass="varsTableDescRow" class="hidden">
                   <td COLSPAN="4">
-                    <div style="margin-left:4.0em">
+                    <div style="margin-left: 4.0em" class="desc classMethodDesc">
+                    <br /><center class="descHeader">Declaration</center>
+                    d_getTagSurroundingText
                     <div>
+                      <br /><center class="descHeader">Parameters</center>
                       <table style="width: 100%;" class="argTable">
-                        <tr class="tableTitle argTableTitle">
-                          <th COLSPAN="3">Parameters</th>
-                        </tr>
                         <tr class="header argHeader">
                           <th>Type</th>
                           <th>Name</th>
@@ -142,6 +145,7 @@ theSameNode = ddh.getElementById("anIdentifier")
                         </tr>
                       </table>
                     </div>
+                    <br /><center class="descHeader">Description</center>
                      Search for some text and return the closest parent (surrounding) node that matches a specified tag.
 For example, this routine can be used to discover the hyperlink connected to some text in the following way:
 getTagSurroundingText("A","click me")
@@ -157,7 +161,10 @@ getTagSurroundingText("A","click me")
                 </tr>
                 <tr oclass="varsTableDescRow" class="hidden">
                   <td COLSPAN="4">
-                    <div style="margin-left:4.0em">
+                    <div style="margin-left: 4.0em" class="desc classMethodDesc">
+                    <br /><center class="descHeader">Declaration</center>
+                    d_getElementById
+                    <br /><center class="descHeader">Description</center>
                      Deferred version of the DOM getElementById function call
                     </div>
                   </td>
@@ -171,7 +178,10 @@ getTagSurroundingText("A","click me")
                 </tr>
                 <tr oclass="varsTableDescRow" class="hidden">
                   <td COLSPAN="4">
-                    <div style="margin-left:4.0em">
+                    <div style="margin-left: 4.0em" class="desc classMethodDesc">
+                    <br /><center class="descHeader">Declaration</center>
+                    d_deepChildList
+                    <br /><center class="descHeader">Description</center>
                      Returns a list of all children and children's children recursively
                     </div>
                   </td>
@@ -185,7 +195,10 @@ getTagSurroundingText("A","click me")
                 </tr>
                 <tr oclass="varsTableDescRow" class="hidden">
                   <td COLSPAN="4">
-                    <div style="margin-left:4.0em">
+                    <div style="margin-left: 4.0em" class="desc classMethodDesc">
+                    <br /><center class="descHeader">Declaration</center>
+                    d_getTitle
+                    <br /><center class="descHeader">Description</center>
                      Returns the contents of the title of the document
                     </div>
                   </td>
@@ -199,7 +212,10 @@ getTagSurroundingText("A","click me")
                 </tr>
                 <tr oclass="varsTableDescRow" class="hidden">
                   <td COLSPAN="4">
-                    <div style="margin-left:4.0em">
+                    <div style="margin-left: 4.0em" class="desc classMethodDesc">
+                    <br /><center class="descHeader">Declaration</center>
+                    d_getH1
+                    <br /><center class="descHeader">Description</center>
                      Returns the contents of the first h1 header in the document
                     </div>
                   </td>
@@ -213,12 +229,12 @@ getTagSurroundingText("A","click me")
                 </tr>
                 <tr oclass="varsTableDescRow" class="hidden">
                   <td COLSPAN="4">
-                    <div style="margin-left:4.0em">
+                    <div style="margin-left: 4.0em" class="desc classMethodDesc">
+                    <br /><center class="descHeader">Declaration</center>
+                    d_click
                     <div>
+                      <br /><center class="descHeader">Parameters</center>
                       <table style="width: 100%;" class="argTable">
-                        <tr class="tableTitle argTableTitle">
-                          <th COLSPAN="3">Parameters</th>
-                        </tr>
                         <tr class="header argHeader">
                           <th>Type</th>
                           <th>Name</th>
@@ -239,6 +255,7 @@ getTagSurroundingText("A","click me")
                         </tr>
                       </table>
                     </div>
+                    <br /><center class="descHeader">Description</center>
                      Simulates a mouse click on a node and optionally waits for it to take effect.
 This function simulates a mouse click by issuing the following events: mouseover, mousedown, mouseup,click, mouseout.
 It then optionally waits for a new page to be loaded in the browser.
@@ -255,12 +272,12 @@ If certain errors occur during loading "Page Load Error", and "Concurrency confl
                 </tr>
                 <tr oclass="varsTableDescRow" class="hidden">
                   <td COLSPAN="4">
-                    <div style="margin-left:4.0em">
+                    <div style="margin-left: 4.0em" class="desc classMethodDesc">
+                    <br /><center class="descHeader">Declaration</center>
+                    d_mouse
                     <div>
+                      <br /><center class="descHeader">Parameters</center>
                       <table style="width: 100%;" class="argTable">
-                        <tr class="tableTitle argTableTitle">
-                          <th COLSPAN="3">Parameters</th>
-                        </tr>
                         <tr class="header argHeader">
                           <th>Type</th>
                           <th>Name</th>
@@ -281,6 +298,7 @@ If certain errors occur during loading "Page Load Error", and "Concurrency confl
                         </tr>
                       </table>
                     </div>
+                    <br /><center class="descHeader">Description</center>
                      Simulate a mouse event.  Note to simulate the exact mouse behavior when the user 'clicks', it is best to use  deferreddomhelper.click .
                     </div>
                   </td>
@@ -294,12 +312,12 @@ If certain errors occur during loading "Page Load Error", and "Concurrency confl
                 </tr>
                 <tr oclass="varsTableDescRow" class="hidden">
                   <td COLSPAN="4">
-                    <div style="margin-left:4.0em">
+                    <div style="margin-left: 4.0em" class="desc classMethodDesc">
+                    <br /><center class="descHeader">Declaration</center>
+                    d_findParentWith
                     <div>
+                      <br /><center class="descHeader">Parameters</center>
                       <table style="width: 100%;" class="argTable">
-                        <tr class="tableTitle argTableTitle">
-                          <th COLSPAN="3">Parameters</th>
-                        </tr>
                         <tr class="header argHeader">
                           <th>Type</th>
                           <th>Name</th>
@@ -316,6 +334,7 @@ If certain errors occur during loading "Page Load Error", and "Concurrency confl
                         </tr>
                       </table>
                     </div>
+                    <br /><center class="descHeader">Description</center>
                      Recursively traverse the parent links, looking for one with a particular attribute,tag, or value.
                     </div>
                   </td>
@@ -329,12 +348,12 @@ If certain errors occur during loading "Page Load Error", and "Concurrency confl
                 </tr>
                 <tr oclass="varsTableDescRow" class="hidden">
                   <td COLSPAN="4">
-                    <div style="margin-left:4.0em">
+                    <div style="margin-left: 4.0em" class="desc classMethodDesc">
+                    <br /><center class="descHeader">Declaration</center>
+                    d_findDeepChildWith
                     <div>
+                      <br /><center class="descHeader">Parameters</center>
                       <table style="width: 100%;" class="argTable">
-                        <tr class="tableTitle argTableTitle">
-                          <th COLSPAN="3">Parameters</th>
-                        </tr>
                         <tr class="header argHeader">
                           <th>Type</th>
                           <th>Name</th>
@@ -355,6 +374,7 @@ If certain errors occur during loading "Page Load Error", and "Concurrency confl
                         </tr>
                       </table>
                     </div>
+                    <br /><center class="descHeader">Description</center>
                      Recursively look for any child node with an tag,value, or attribute that matches any item in the passed list.
                     </div>
                   </td>
@@ -368,12 +388,12 @@ If certain errors occur during loading "Page Load Error", and "Concurrency confl
                 </tr>
                 <tr oclass="varsTableDescRow" class="hidden">
                   <td COLSPAN="4">
-                    <div style="margin-left:4.0em">
+                    <div style="margin-left: 4.0em" class="desc classMethodDesc">
+                    <br /><center class="descHeader">Declaration</center>
+                    d_findDeepChildrenWith
                     <div>
+                      <br /><center class="descHeader">Parameters</center>
                       <table style="width: 100%;" class="argTable">
-                        <tr class="tableTitle argTableTitle">
-                          <th COLSPAN="3">Parameters</th>
-                        </tr>
                         <tr class="header argHeader">
                           <th>Type</th>
                           <th>Name</th>
@@ -394,6 +414,7 @@ If certain errors occur during loading "Page Load Error", and "Concurrency confl
                         </tr>
                       </table>
                     </div>
+                    <br /><center class="descHeader">Description</center>
                      Recursively look for all child nodes with a tag,value, or attribute that matches any item in the passed list.
                     </div>
                   </td>
